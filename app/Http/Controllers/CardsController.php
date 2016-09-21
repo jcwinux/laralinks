@@ -14,7 +14,9 @@ class CardsController extends Controller
 		return view('cards.index',$parameters);
 	}
 	public function show(Card $card)
-	{	$parameters = ['title'=>'Consulta un registro','card'=>$card];
+	{	//$card = Card::with('notes.user')->find(1);
+		$card->load('notes.user');
+		$parameters = ['title'=>'Consulta un registro','card'=>$card];
 		return view('cards.show',$parameters);
 	}
 }
